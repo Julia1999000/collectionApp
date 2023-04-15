@@ -1,2 +1,7 @@
 ﻿# JetBrains IDE
 .idea/
+/Logs
+/Library
+/obj
+/Temp
+/UserSettings
