@@ -1,11 +1,15 @@
 ﻿using UnityEngine.SceneManagement;
 
-public class ScenesNavigator : IScenesNavigator {
+namespace  Navigation {
     
-    private static string MAIN_MENU = "MainMenu";
+    public class ScenesNavigator : IScenesNavigator {
 
-    public override void OpenSceneMenu() {
-        SceneManager.LoadScene(MAIN_MENU);
+        private static string MAIN_MENU = "MainMenu";
+
+        public override void OpenSceneMenu() {
+            SceneManager.LoadScene(MAIN_MENU);
+        }
+
     }
-
+    
 }

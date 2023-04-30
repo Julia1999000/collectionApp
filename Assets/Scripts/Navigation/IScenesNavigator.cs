@@ -1,7 +1,11 @@
 ﻿using UnityEngine;
 
-public abstract class IScenesNavigator : MonoBehaviour {
-    
-    public abstract void OpenSceneMenu();
+namespace Navigation {
 
+    public abstract class IScenesNavigator : MonoBehaviour {
+
+        public abstract void OpenSceneMenu();
+
+    }
+    
 }

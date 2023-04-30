@@ -1,11 +1,19 @@
-﻿using UnityEngine;
+﻿using App.WindowSystem.Controller;
+using Navigation;
+using UnityEngine;
 
-public class IMainController : MonoBehaviour {
+namespace App.Main {
     
-    public static MainController Instance {  get; protected set; }
+    public class IMainController : MonoBehaviour {
+        
+        public static MainController Instance { get; protected set; }
 
-    public Camera Camera { get; set; }
-    
-    public ScenesNavigator ScenesNavigator { get; }
+        public Camera Camera { get; set; }
+
+        public ScenesNavigator ScenesNavigator { get; }
+
+        public WindowsController WindowsController { get; }
+         
+    }
     
 }

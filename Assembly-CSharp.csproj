@@ -41,30 +41,28 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\App\WindowSystem\Controller\WindowsController.cs" />
      <Compile Include="Assets\Scripts\App\Main\MainController.cs" />
      <Compile Include="Assets\Scripts\App\Main\IMainController.cs" />
+     <Compile Include="Assets\Scripts\App\WindowSystem\Windows\WindowType.cs" />
+     <Compile Include="Assets\Scripts\App\WindowSystem\Windows\SettingsWindow.cs" />
+     <Compile Include="Assets\Scripts\App\WindowSystem\Windows\BaseWindow.cs" />
      <Compile Include="Assets\Scripts\Menu\MainMenu.cs" />
      <Compile Include="Assets\Scripts\Navigation\IScenesNavigator.cs" />
      <Compile Include="Assets\Scripts\Navigation\ScenesNavigator.cs" />
-     <Compile Include="Assets\Scripts\App\WindowsController\Controller\WindowsController.cs" />
-     <Compile Include="Assets\Scripts\App\WindowsController\Controller\IWindowsController.cs" />
-     <Compile Include="Assets\Scripts\App\WindowsController\Windows\BaseWindow.cs" />
-     <Compile Include="Assets\Scripts\App\Extensions\AppSpecific\SpecificExtensions.cs" />
-     <Compile Include="Assets\Scripts\App\WindowsController\Windows\TestWindow.cs" />
+     <Compile Include="Assets\Scripts\App\WindowSystem\Controller\IWindowsController.cs" />
      <Folder Include="Assets" />
      <Folder Include="Assets\Scripts\Navigation" />
      <Folder Include="Assets\Scripts\App" />
      <Folder Include="Assets\Resources" />
-     <Folder Include="Assets\Scripts\App\Extensions" />
      <Folder Include="Assets\Prefabs" />
      <Folder Include="Assets\Scripts\Menu" />
      <Folder Include="Assets\Scripts" />
-     <Folder Include="Assets\Scripts\App\WindowsController" />
+     <Folder Include="Assets\Scripts\App\WindowSystem" />
      <Folder Include="Assets\Scripts\App\Main" />
-     <Folder Include="Assets\Scripts\App\WindowsController\Windows" />
-     <Folder Include="Assets\Scripts\App\WindowsController\Controller" />
+     <Folder Include="Assets\Scripts\App\WindowSystem\Windows" />
+     <Folder Include="Assets\Scripts\App\WindowSystem\Controller" />
      <Folder Include="Assets\Scenes" />
-     <Folder Include="Assets\Scripts\App\Extensions\AppSpecific" />
      <Reference Include="UnityEngine">
      <HintPath>C:\Program Files\Unity 2020.3.46f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
      </Reference>
