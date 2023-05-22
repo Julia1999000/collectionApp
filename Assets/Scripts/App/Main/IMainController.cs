@@ -1,5 +1,6 @@
 ﻿using App.WindowSystem.Controller;
 using Navigation;
+using NavigationBar;
 using UnityEngine;
 
 namespace App.Main {
@@ -13,6 +14,8 @@ namespace App.Main {
         public ScenesNavigator ScenesNavigator { get; }
 
         public WindowsController WindowsController { get; }
+        
+        public NavigationBarController NavigationBarController { get; }
          
     }
     

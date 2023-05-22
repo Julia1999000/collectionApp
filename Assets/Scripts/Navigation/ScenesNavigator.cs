@@ -3,11 +3,9 @@
 namespace  Navigation {
     
     public class ScenesNavigator : IScenesNavigator {
-
-        private static string MAIN_MENU = "MainMenu";
-
+        
         public override void OpenSceneMenu() {
-            SceneManager.LoadScene(MAIN_MENU);
+            SceneManager.LoadScene(SceneNames.MAIN_MENU);
         }
 
     }

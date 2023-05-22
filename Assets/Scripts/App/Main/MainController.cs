@@ -1,5 +1,6 @@
 using App.WindowSystem.Controller;
 using Navigation;
+using NavigationBar;
 using UnityEngine;
 
 namespace App.Main {
@@ -8,6 +9,7 @@ namespace App.Main {
 
         [SerializeField] private ScenesNavigator _scenesNavigator;
         [SerializeField] private WindowsController _windowsController;
+        [SerializeField] private NavigationBarController _navigationBarController;
 
         private static MainController _instance;
         private Camera _camera;
@@ -15,6 +17,7 @@ namespace App.Main {
         public static MainController Instance => _instance;
         public ScenesNavigator ScenesNavigator => _scenesNavigator;
         public WindowsController WindowsController => _windowsController;
+        public NavigationBarController NavigationBarController => _navigationBarController;
 
         public Camera Camera {
             get => _camera;
