@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using DefaultNamespace;
+using GestureController;
 using UnityEngine;
 using UnityEngine.UI;
 

@@ -52,6 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _closeWindowBtn: {fileID: 7008547469324035424}
+  _windowsType: 1
 --- !u!225 &1056755791926808963
 CanvasGroup:
   m_ObjectHideFlags: 0

@@ -41,9 +41,13 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Editor\SettingsWindowEditor.cs" />
+     <Compile Include="Assets\Editor\EditorInspector\BaseWindowEditor.cs" />
+     <Compile Include="Assets\Editor\EditorWindow\LevelEditor\LevelEditorWindow.cs" />
      <Compile Include="Assets\Editor\MenuItems.cs" />
+     <Folder Include="Assets\Editor\EditorInspector" />
+     <Folder Include="Assets\Editor\EditorWindow\LevelEditor" />
      <Folder Include="Assets\Editor" />
+     <Folder Include="Assets\Editor\EditorWindow" />
      <Reference Include="UnityEngine">
      <HintPath>C:\Program Files\Unity 2020.3.46f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
      </Reference>

@@ -42,36 +42,42 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Navigation\SceneNames.cs" />
+     <Compile Include="Assets\Scripts\NavigationBar\INavigationBarController.cs" />
      <Compile Include="Assets\Scripts\App\WindowSystem\Controller\WindowsController.cs" />
      <Compile Include="Assets\Scripts\App\Main\MainController.cs" />
      <Compile Include="Assets\Scripts\App\Main\IMainController.cs" />
+     <Compile Include="Assets\Scripts\GestureController\SwipeController.cs" />
      <Compile Include="Assets\Scripts\App\WindowSystem\Windows\WindowsType.cs" />
      <Compile Include="Assets\Scripts\App\WindowSystem\Windows\SettingsWindow.cs" />
      <Compile Include="Assets\Scripts\App\WindowSystem\Windows\WindowOnsetType.cs" />
+     <Compile Include="Assets\Scripts\NavigationBar\NavigationBarController.cs" />
      <Compile Include="Assets\Scripts\App\WindowSystem\Windows\BaseWindow.cs" />
      <Compile Include="Assets\Scripts\Menu\MainMenu.cs" />
+     <Compile Include="Assets\Scripts\Levels\LevelData.cs" />
      <Compile Include="Assets\Scripts\Navigation\IScenesNavigator.cs" />
      <Compile Include="Assets\Scripts\Navigation\ScenesNavigator.cs" />
      <Compile Include="Assets\Scripts\App\WindowSystem\Controller\IWindowsController.cs" />
-     <Compile Include="Assets\Scripts\NavigationBar\NavigationBarController.cs" />
-     <Compile Include="Assets\Scripts\NavigationBar\INavigationBarController.cs" />
-     <Compile Include="Assets\Scripts\SwipeController.cs" />
      <Folder Include="Assets" />
      <Folder Include="Assets\Scripts\Navigation" />
      <Folder Include="Assets\Scripts\NavigationBar" />
+     <Folder Include="Assets\Resources\Data\LevelsData" />
      <Folder Include="Assets\Scripts\App" />
+     <Folder Include="Assets\Scripts\GestureController" />
      <Folder Include="Assets\Resources\Prefabs\Windows" />
      <Folder Include="Assets\Resources" />
      <Folder Include="Assets\Resources\Prefabs" />
      <Folder Include="Assets\Scripts\Menu" />
      <Folder Include="Assets\Scripts" />
      <Folder Include="Assets\Scripts\App\WindowSystem" />
+     <Folder Include="Assets\Resources\Styles" />
      <Folder Include="Assets\Scripts\App\Main" />
      <Folder Include="Assets\Scripts\App\WindowSystem\Windows" />
      <Folder Include="Assets\Resources\Prefabs\NavigationBar" />
      <Folder Include="Assets\Scripts\App\WindowSystem\Controller" />
      <Folder Include="Assets\Scenes" />
      <Folder Include="Assets\Resources\Pictures" />
+     <Folder Include="Assets\Resources\Data" />
+     <Folder Include="Assets\Scripts\Levels" />
      <Reference Include="UnityEngine">
      <HintPath>C:\Program Files\Unity 2020.3.46f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
      </Reference>
