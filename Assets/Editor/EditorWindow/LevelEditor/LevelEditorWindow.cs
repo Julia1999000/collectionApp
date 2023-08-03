@@ -149,6 +149,9 @@ namespace Editor.LevelEditor {
         }
 
         private bool CheckValidityOfNumber(int number) {
+            if (number <= 0) {
+                return false;
+            } 
             var found = _levels.FindAll(it => it.Number == number);
             return !found.Any();
         }
