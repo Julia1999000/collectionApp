@@ -14,7 +14,6 @@ namespace Editor.LevelEditor {
         private const string LEVELS_HEADER = "Levels:";
         private const string SETTINGS_HEADER = "Settings:";
         private const string ADD_BTN_TXT = "Add Level";
-        private const string SORT_BTN_TXT = "Sort Levels";
         private const string REMOVE_BTN_TXT = "Remove Level";
         private const string LEVEL_NAME_LABEL = "Level Name";
         private const string LEVEL_NUMBER_LABEL = "Level Number";
@@ -45,11 +44,13 @@ namespace Editor.LevelEditor {
         }
 
         private void OnEnable() {
-            GetLevelsData();
+            
             InitTextures();
         }
 
         private void OnGUI () {
+            GetLevelsData();
+            
             InitStyles();
             DrawLayouts();
             DrawLevels();
@@ -89,12 +90,7 @@ namespace Editor.LevelEditor {
             
             GUILayout.BeginArea(_levelsSection);
             GUILayout.BeginArea(boxContent);
-            GUILayout.BeginHorizontal();
             GUILayout.Label(LEVELS_HEADER, GUILayout.Height(BUTTON_HEIGHT));
-            if (GUILayout.Button(SORT_BTN_TXT,  GUILayout.Height(BUTTON_HEIGHT))) {
-                OnSortButtonClicked();
-            }
-            GUILayout.EndHorizontal();
             
             _scrollPosition = GUILayout.BeginScrollView(_scrollPosition);
             foreach (var levelData in _levels) {
@@ -202,12 +198,6 @@ namespace Editor.LevelEditor {
                 _levels.Remove(_selectedLevel);
                 _selectedLevel = null;
             }
-        }
-
-        private void OnSortButtonClicked() {
-            _levels.Sort(delegate(LevelData x, LevelData y) {
-                return x.Number.CompareTo(y.Number);
-            });
         }
 
         private void GetLevelsData() { 
