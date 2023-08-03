@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using App.Main;
 using GestureController;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,6 +12,7 @@ namespace NavigationBar {
         private Dictionary<Button, Transform> _bunchOfBtnsAndScreens;
         private float _widthScreenContainer;
         private float _widthScreen;
+        
         private float SCROLL_ANIMATION_TIME = 0.3f;
         private float SWIPE_ANIMATION_TIME = 0.1f;
 
@@ -45,6 +46,9 @@ namespace NavigationBar {
         }
 
         private void OnSwipe(Vector2 direction) {
+            if (IMainController.Instance.WindowsController.CountOpenWindows != 0) {
+                return;
+            }
             if (direction == Vector2.right) {
                 if (_screenContainer.transform.position.x != 0) {
                      SwipeScreen(_screenContainer.transform.position.x + _widthScreen, SWIPE_ANIMATION_TIME);

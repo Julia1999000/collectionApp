@@ -8,16 +8,17 @@ namespace App.WindowSystem.Controller {
     
     public class WindowsController : IWindowsController {
         
-        private static string PATH_TO_PREFABS_WINDOWS = "Prefabs/Windows";
-        
         private float ANIMATION_TIME = 0.5f;
         private float HIDDEN_FADE_ALPHA = 0f;
         private float SHOWN_FADE_ALPHA = 0.7f;
         private Transform _windowsLayerTransform;
         private GameObject _fade;
-        private readonly Dictionary<GameObject, Vector3> _openWindows = new Dictionary<GameObject, Vector3>();
+        private readonly List<GameObject> _openWindows = new List<GameObject>();
         private GameObject _currentWindow;
-        private Vector3 _currentWindOnsetPos;
+
+        public int CountOpenWindows {
+            get => _openWindows.Count;
+        }
 
         public Transform Transform {
             get => _windowsLayerTransform;
@@ -29,23 +30,23 @@ namespace App.WindowSystem.Controller {
             set => _fade = value;
         }
 
-        public void OpenWindow(WindowsType windowType, Vector3 windowOnsetPosition) {
-            _currentWindow = LoadWindow(WindowsTypeMapper.GetReadableString(windowType), windowOnsetPosition);
-            _currentWindOnsetPos = windowOnsetPosition;
-            _openWindows.Add(_currentWindow, windowOnsetPosition);
+        public void OpenWindow(WindowsType windowType, WindowOnsetType windowOnsetType) {
+            var pos = WindowsOnsetTypeMapper.GetLegalPosition(windowOnsetType, windowType);
+            _currentWindow = LoadWindow(WindowsTypeMapper.GetReadableString(windowType), pos);
+            _currentWindow.GetComponent<BaseWindow>().OnsetType = windowOnsetType;
+            _openWindows.Add(_currentWindow);
             ShowFade();
             OpenWindowAnimation();
         }
 
         public void CloseWindow(GameObject window) {
             _currentWindow = window;
-            _currentWindOnsetPos = _openWindows[window];
             CloseWindowAnimation();
             HideFade();
         }
 
         private GameObject LoadWindow(string windowType, Vector3 position) {
-            var pathToPrefab = PATH_TO_PREFABS_WINDOWS + windowType;
+            var pathToPrefab = AppPath.PATH_TO_PREFABS_WINDOWS + windowType;
             var prefab = Resources.Load<GameObject>(pathToPrefab);
             var window = Instantiate(prefab, position, Quaternion.identity, _windowsLayerTransform);
             return window;
@@ -83,23 +84,25 @@ namespace App.WindowSystem.Controller {
             var toAlpha = isShow ? 1 : 0;
             LeanTween.cancel(_currentWindow);
             LeanTween.alphaCanvas(_currentWindow.GetComponent<CanvasGroup>(), toAlpha, ANIMATION_TIME);
-            
-            if (_currentWindOnsetPos == WindowOnsetType.ONSET_FROM_CENTER) {
+
+            var onsetType = _currentWindow.GetComponent<BaseWindow>().OnsetType;
+            if (onsetType == WindowOnsetType.ONSET_FROM_CENTER) {
                 OnsetFromCenterAnimation(isShow);
                 return;
             }
-            if (_currentWindOnsetPos == WindowOnsetType.ONSET_FROM_BOTTOM || _currentWindOnsetPos == WindowOnsetType.ONSET_FROM_TOP) {
+            if (onsetType == WindowOnsetType.ONSET_FROM_BOTTOM || onsetType == WindowOnsetType.ONSET_FROM_TOP) {
                 VerticalOnsetAnimation(isShow);
                 return;
             }
-            if (_currentWindOnsetPos == WindowOnsetType.ONSET_FROM_LEFT || _currentWindOnsetPos == WindowOnsetType.ONSET_FROM_RIGHT) {
+            if (onsetType == WindowOnsetType.ONSET_FROM_LEFT || onsetType == WindowOnsetType.ONSET_FROM_RIGHT) {
                 HorizontalOnsetAnimation(isShow);
                 return;
             }
         }
         
         private void HorizontalOnsetAnimation(bool isShow) {
-            var toX = isShow ? 0f : _currentWindOnsetPos.x;
+            var toX = isShow ? 0f : WindowsOnsetTypeMapper.GetLegalPosition(_currentWindow.GetComponent<BaseWindow>().OnsetType, 
+                _currentWindow.GetComponent<BaseWindow>().WindowType).x;
             LeanTween.moveX(_currentWindow.GetComponent<RectTransform>(), toX, ANIMATION_TIME).setEaseSpring()
                 .setOnComplete(() => {
                     if (!isShow) {
@@ -109,7 +112,8 @@ namespace App.WindowSystem.Controller {
         }
         
         private void VerticalOnsetAnimation(bool isShow) {
-            var toY = isShow ? 0f : _currentWindOnsetPos.y;
+            var toY = isShow ? 0f : WindowsOnsetTypeMapper.GetLegalPosition(_currentWindow.GetComponent<BaseWindow>().OnsetType, 
+                _currentWindow.GetComponent<BaseWindow>().WindowType).y;
             LeanTween.moveY(_currentWindow.GetComponent<RectTransform>(), toY, ANIMATION_TIME).setEaseSpring()
                 .setOnComplete(() => {
                     if (!isShow) {
@@ -119,7 +123,7 @@ namespace App.WindowSystem.Controller {
         }
         
         private void OnsetFromCenterAnimation(bool isShow) {
-            var toScale = isShow ? WindowOnsetType.NORMAL_SCALE_ONSET : WindowOnsetType.SCALE_ONSET_08;
+            var toScale = isShow ? WindowScale.NORMAL_SCALE_ONSET : WindowScale.SCALE_ONSET_08;
             LeanTween.scale(_currentWindow, toScale, ANIMATION_TIME).setEaseSpring().setOnComplete(() => {
                 if (!isShow) {
                     DeleteWindow();
@@ -131,7 +135,6 @@ namespace App.WindowSystem.Controller {
             _openWindows.Remove(_currentWindow);
             Destroy(_currentWindow);
         }
-
         
     }
     

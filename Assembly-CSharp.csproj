@@ -47,6 +47,7 @@
      <Compile Include="Assets\Scripts\App\Main\MainController.cs" />
      <Compile Include="Assets\Scripts\App\Main\IMainController.cs" />
      <Compile Include="Assets\Scripts\GestureController\SwipeController.cs" />
+     <Compile Include="Assets\Scripts\App\AppPath.cs" />
      <Compile Include="Assets\Scripts\App\WindowSystem\Windows\WindowsType.cs" />
      <Compile Include="Assets\Scripts\App\WindowSystem\Windows\SettingsWindow.cs" />
      <Compile Include="Assets\Scripts\App\WindowSystem\Windows\WindowOnsetType.cs" />

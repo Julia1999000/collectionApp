@@ -6,7 +6,7 @@ using UnityEditor;
 public class BaseWindowEditor : UnityEditor.Editor {
     
     private const string WINDOW_TYPE_LABEL = "Window Type";
-   
+
     public override void OnInspectorGUI() {
         base.OnInspectorGUI();
         

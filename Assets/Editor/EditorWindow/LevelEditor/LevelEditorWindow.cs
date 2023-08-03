@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using App;
 using Levels;
 using UnityEditor;
 using UnityEngine;
@@ -7,10 +8,6 @@ using UnityEngine;
 namespace Editor.LevelEditor {
     
     public class LevelEditorWindow : EditorWindow {
-
-        private const string FORMAT_PATH_TO_LEVEL = @"Assets/Resources/Data/LevelsData/{0}.asset";
-        private const string PATH_TO_LEVELS_DATA = "Assets/Resources/Data/LevelsData/";
-        private const string PATH_TO_STYLES = "Styles/";
         private const string SELECTED_LEVEL_SKIN = "LevelEditorSelectedLevelSkin";
         private const string SELECTED_LEVEL_STYLE = "button";
         private const string WINDOW_TITLE = "Level Editor";
@@ -66,7 +63,7 @@ namespace Editor.LevelEditor {
         }
 
         private void InitStyles() {
-            var selectedLevelSkin = Resources.Load<GUISkin>(PATH_TO_STYLES + SELECTED_LEVEL_SKIN);
+            var selectedLevelSkin = Resources.Load<GUISkin>(AppPath.PATH_TO_STYLES + SELECTED_LEVEL_SKIN);
             _selectedLevelStyle = selectedLevelSkin.GetStyle(SELECTED_LEVEL_STYLE);
             _levelItemStyle = new GUIStyle(GUI.skin.button);
             
@@ -190,7 +187,7 @@ namespace Editor.LevelEditor {
             newLevel.Number = number;
             newLevel.name = string.Format(LevelData.NAME, number);
             
-            AssetDatabase.CreateAsset(newLevel, string.Format(FORMAT_PATH_TO_LEVEL, newLevel.name));
+            AssetDatabase.CreateAsset(newLevel, string.Format(AppPath.FORMAT_PATH_TO_LEVEL, newLevel.name));
             AssetDatabase.SaveAssets();
             _levels.Add(newLevel);
         }
@@ -212,7 +209,7 @@ namespace Editor.LevelEditor {
 
         private void GetLevelsData() { 
             _levels.Clear();
-            var paths = AssetDatabase.FindAssets("", new[] { PATH_TO_LEVELS_DATA });
+            var paths = AssetDatabase.FindAssets("", new[] { AppPath.PATH_TO_LEVELS_DATA });
            
             foreach (var item in paths) {
                 _levels.Add(AssetDatabase.LoadAssetAtPath<LevelData>(AssetDatabase.GUIDToAssetPath(item)));
